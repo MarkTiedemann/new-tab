@@ -12,7 +12,6 @@
 
 ## Todos
 
-- Add icons and keyboard shortcuts for most-used sites.
 - Add clock and current date.
 - Add weather icons and info.
 
