@@ -6,7 +6,7 @@
 
 ## Installation
 
-1. `git clone github.com/marktiedemann/new-tab`
+1. `git clone https://github.com/marktiedemann/new-tab`.
 2. Install [New Tab Redirect](https://chrome.google.com/webstore/detail/new-tab-redirect/icpgjfneehieebagbmdbhnlpiopdcmna).
 3. Set location to `file:///${PWD}/new-tab/index.html`.
 
