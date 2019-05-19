@@ -6,6 +6,7 @@
   <!-- Mongolian Vowel Separator -->
   <title>&#6158;</title>
   <style>
+
     body {
       margin: 0;
       height: 90vh;
@@ -129,6 +130,28 @@
       width: 20px;
     }
 
+    .time {
+      margin-top: 60px;
+      font-size: 36px;
+    }
+
+    .clock {
+      margin-right: 10px;
+    }
+
+    .colon {
+      color: #077edf;
+      font-weight: 600;
+      margin-left: 6px;
+      margin-right: 6px;
+    }
+
+    .dot {
+      color: #9efb0d;
+      margin-left: 3px;
+      margin-right: 6px;
+    }
+
   </style>
 </head>
 
@@ -228,6 +251,46 @@
       </button>
     <form>
   </div>
+
+  <div class="time">
+    <span class="clock">
+      <span class="hour"></span><span class="colon">:</span><span class="minute"></span>
+    </span>
+    <span class="date">
+      <span class="day"></span><span class="dot">.</span><span class="month"></span><span class="dot">.</span>
+    </span>
+  </div>
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var hour = document.querySelector(".hour")
+      var minute = document.querySelector(".minute")
+      var day = document.querySelector(".day")
+      var month = document.querySelector(".month")
+
+      function pad(n) {
+        return n < 10 ? "0" + n : n
+      }
+
+      function updateTime() {
+        var now = new Date()
+        hour.textContent = pad(now.getHours())
+        minute.textContent = pad(now.getMinutes())
+        day.textContent = pad(now.getDate())
+        month.textContent = pad(now.getMonth() + 1)
+      }
+
+      updateTime()
+      var now = new Date()
+      var next_minute = (60 - now.getSeconds()) * 1000
+      setTimeout(function () {
+        updateTime()
+        setInterval(updateTime, 60 * 1000)
+      }, next_minute)
+    })
+
+</script>
 
 </body>
 

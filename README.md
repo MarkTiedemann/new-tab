@@ -12,8 +12,7 @@
 
 ## Todos
 
-- Add clock and current date.
-- Add weather icons and info.
+- Add weather icons and info (using `navigator.geolocation` and metaweather.com).
 
 ## License
 
