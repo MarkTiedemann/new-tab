@@ -115,7 +115,7 @@
       height: 42px;
       width: 52px;
       padding: 0;
-      transform: translate(-3.6px, 0);
+      transform: translate(-3.6px, -1px);
       border: none;
       cursor: pointer;
       background: white;
@@ -130,7 +130,7 @@
       width: 20px;
     }
 
-    .time {
+    .info {
       margin-top: 60px;
       font-size: 36px;
     }
@@ -146,10 +146,37 @@
       margin-right: 6px;
     }
 
+    .date {
+      margin-right: 10px;
+    }
+
     .dot {
-      color: #9efb0d;
+      color: #077edf;
+      font-weight: 600;
       margin-left: 3px;
       margin-right: 6px;
+    }
+
+    .pink {
+      color: deeppink !important;
+    }
+
+    .charging {
+      color: #9efb0d;
+      font-size: 38px;
+      margin-right: 4px;
+    }
+
+    .underscores {
+      color: #9efb0d;
+      display: inline-block;
+      transform: translateY(-4px);
+      margin-right: 2px;
+      letter-spacing: 4px;
+    }
+
+    .percent {
+      margin-left: 6px;
     }
 
   </style>
@@ -252,42 +279,69 @@
     <form>
   </div>
 
-  <div class="time">
+  <div class="info">
     <span class="clock">
-      <span class="hour"></span><span class="colon">:</span><span class="minute"></span>
+      <span class="hour">00</span><span class="colon">:</span><span class="minute">00</span>
     </span>
     <span class="date">
-      <span class="day"></span><span class="dot">.</span><span class="month"></span><span class="dot">.</span>
+      <span class="day">00</span><span class="dot">.</span><span class="month">00</span><span class="dot">.</span>
+    </span>
+    <span class="battery">
+      <span class="charging">↑</span><span class="underscores"></span><span class="charge">100</span><span class="percent">%</span>
     </span>
   </div>
 
   <script>
 
     document.addEventListener("DOMContentLoaded", function () {
+
+      // Clock & Date
+
       var hour = document.querySelector(".hour")
       var minute = document.querySelector(".minute")
       var day = document.querySelector(".day")
       var month = document.querySelector(".month")
 
-      function pad(n) {
-        return n < 10 ? "0" + n : n
-      }
-
       function updateTime() {
         var now = new Date()
-        hour.textContent = pad(now.getHours())
-        minute.textContent = pad(now.getMinutes())
-        day.textContent = pad(now.getDate())
-        month.textContent = pad(now.getMonth() + 1)
+        hour.textContent = padZero(now.getHours())
+        minute.textContent = padZero(now.getMinutes())
+        day.textContent = padZero(now.getDate())
+        month.textContent = padZero(now.getMonth() + 1)
       }
 
+      function padZero(n) { return n < 10 ? "0" + n : n }
+      function nextMinute() { return (60 - new Date().getSeconds()) * 1000 }
+
       updateTime()
-      var now = new Date()
-      var next_minute = (60 - now.getSeconds()) * 1000
       setTimeout(function () {
         updateTime()
         setInterval(updateTime, 60 * 1000)
-      }, next_minute)
+      }, nextMinute())
+
+      // Battery
+
+      var charging = document.querySelector(".charging")
+      var underscores = document.querySelector(".underscores")
+      var charge = document.querySelector(".charge")
+
+      function updateCharge(battery) {
+        let percent = Math.round(battery.level * 100)
+
+        charging.textContent = battery.charging ? "↑" : "↓"
+        battery.charging ? charging.classList.remove("pink") : charging.classList.add("pink")
+
+        underscores.textContent = percent < 10 ? "__" : percent < 100 ? "_" : ""
+        battery.charging ? underscores.classList.remove("pink") : underscores.classList.add("pink")
+
+        charge.textContent = percent
+      }
+
+      navigator.getBattery().then(function (battery) {
+        updateCharge(battery)
+        battery.addEventListener("chargingchange", function () { updateCharge(battery) })
+        battery.addEventListener("levelchange", function () { updateCharge(battery) })
+      })
     })
 
 </script>
