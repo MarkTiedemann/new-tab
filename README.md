@@ -10,10 +10,6 @@
 2. Open [`edge://settings/onStartup`](edge://settings/onStartup), choose "Open a specific page" and add `file:///${PWD}/new-tab/index.html`.
 3. Install [New Tab Redirect](https://chrome.google.com/webstore/detail/new-tab-redirect/icpgjfneehieebagbmdbhnlpiopdcmna) and set the redirect URL to `file:///${PWD}/new-tab/index.html`.
 
-## Todos
-
-- Add weather icons and info (using `navigator.geolocation` and metaweather.com).
-
 ## License
 
 [Blue Oak](https://blueoakcouncil.org/license/1.0.0)
