@@ -1,6 +1,6 @@
 # new-tab
 
-**My personal new tab page for [Edge Dev](https://www.microsoftedgeinsider.com/en-us/download/).**
+**My personal new-tab page.**
 
 ![](screenshot.png)
 
