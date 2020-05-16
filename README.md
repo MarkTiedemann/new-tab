@@ -7,8 +7,8 @@
 ## Installation
 
 1. `git clone https://github.com/marktiedemann/new-tab`.
-2. Open [`edge://settings/onStartup`](edge://settings/onStartup), choose "Open a specific page" and add `file:///${PWD}/new-tab/index.html`.
-3. Install [New Tab Redirect](https://chrome.google.com/webstore/detail/new-tab-redirect/icpgjfneehieebagbmdbhnlpiopdcmna) and set the redirect URL to `file:///${PWD}/new-tab/index.html`.
+2. Open [`edge://settings/onStartup`](edge://settings/onStartup), choose "Open a specific page" and add `file://%cd%/new-tab/index.html`.
+3. Install [New Tab Redirect](https://chrome.google.com/webstore/detail/new-tab-redirect/icpgjfneehieebagbmdbhnlpiopdcmna) and set the redirect URL to `file://%cd%/new-tab/index.html`.
 
 ## License
 
