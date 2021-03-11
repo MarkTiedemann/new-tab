@@ -2,8 +2,6 @@
 
 **My personal new-tab page.**
 
-![](screenshot.png)
-
 ## Installation
 
 1. `git clone https://github.com/marktiedemann/new-tab`.
